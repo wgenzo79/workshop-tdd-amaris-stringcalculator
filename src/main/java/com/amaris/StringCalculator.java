@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 public class StringCalculator {
 
     public static final String DEFAULT_DELIMITERS = ",|\n";
-    public static final String NEW_DELIMITER_REGEX = "[^0-9]\n.*";
     public static final String NEW_LINE = "\n";
 
     public int add(String str) throws NegativesNotAllowedException {
@@ -17,9 +16,9 @@ public class StringCalculator {
         if(!str.isEmpty()) {
             String delimitersRegEx = DEFAULT_DELIMITERS;
 
-            if(hasNewDelimiter(str)) {
+            if(str.startsWith("\\")) {
                 String[] newStr = str.split(NEW_LINE, 2);
-                delimitersRegEx = newStr[0];
+                delimitersRegEx = newStr[0].substring(1);
                 str = newStr[1];
             }
 
@@ -27,10 +26,6 @@ public class StringCalculator {
         }
 
         return sum;
-    }
-
-    private boolean hasNewDelimiter(String str) {
-        return Pattern.matches(NEW_DELIMITER_REGEX, str);
     }
 
     private int makeAddition(final String[] numbers) throws NegativesNotAllowedException {

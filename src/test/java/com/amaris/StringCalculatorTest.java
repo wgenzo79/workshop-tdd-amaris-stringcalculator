@@ -48,7 +48,13 @@ public class StringCalculatorTest {
 
     @Test
     public void withNewDelimitator() throws Exception {
-        int sum = stringCalculator.add(";\n7;2");
+        int sum = stringCalculator.add("\\;\n7;2");
+        assertEquals(9, sum);
+    }
+
+    @Test
+    public void withMoreThanOneCharDelimitator() throws Exception {
+        int sum = stringCalculator.add("\\:;-\n7:;-2");
         assertEquals(9, sum);
     }
 
