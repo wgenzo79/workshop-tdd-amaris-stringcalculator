@@ -2,7 +2,9 @@ package com.amaris;
 
 import com.amaris.exception.NegativesNotAllowedException;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -50,23 +52,20 @@ public class StringCalculatorTest {
         assertEquals(9, sum);
     }
 
-    @Test(expected = NegativesNotAllowedException.class)
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
+
+    @Test
     public void whenNegativesThenException() throws Exception {
-        try {
-            stringCalculator.add("2, -1");
-        } catch (Exception e) {
-            System.out.println("StringCalculatorTest.whenNegativesThenException - " + e.getLocalizedMessage());
-            throw e;
-        }
+        exception.expect(NegativesNotAllowedException.class);
+        exception.expectMessage("Negatives not allowed => [-1]");
+        stringCalculator.add("2, -1");
     }
 
     @Test
     public void whenMoreThanOneNegativesThenExceptionPrintsAll() throws Exception {
-        try {
-            stringCalculator.add("2, -1, 2, -10");
-        } catch (NegativesNotAllowedException e) {
-            System.out.println("StringCalculatorTest.whenMoreThanOneNegativesThenExceptionPrintsAll - " + e.getLocalizedMessage());
-            assertEquals("Negatives not allowed => [-1, -10]", e.getLocalizedMessage());
-        }
+        exception.expect(NegativesNotAllowedException.class);
+        exception.expectMessage("Negatives not allowed => [-1, -10]");
+        stringCalculator.add("2, -1, 2, -10");
     }
 }
