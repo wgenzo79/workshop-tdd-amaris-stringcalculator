@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IdeaProjects-StringCalculator.iml" filepath="$PROJECT_DIR$/.idea/modules/IdeaProjects-StringCalculator.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/StringCalculator.iml" filepath="$PROJECT_DIR$/.idea/modules/StringCalculator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/StringCalculator_main.iml" filepath="$PROJECT_DIR$/.idea/modules/StringCalculator_main.iml" group="StringCalculator" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/StringCalculator_test.iml" filepath="$PROJECT_DIR$/.idea/modules/StringCalculator_test.iml" group="StringCalculator" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/string_calculator.iml" filepath="$PROJECT_DIR$/.idea/modules/string_calculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/string_calculator_main.iml" filepath="$PROJECT_DIR$/.idea/modules/string_calculator_main.iml" group="string_calculator" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/string_calculator_test.iml" filepath="$PROJECT_DIR$/.idea/modules/string_calculator_test.iml" group="string_calculator" />
     </modules>
   </component>
 </project>
