@@ -3,7 +3,6 @@ package com.amaris;
 import com.amaris.exception.NegativesNotAllowedException;
 
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 public class StringCalculator {
 
@@ -13,19 +12,22 @@ public class StringCalculator {
     public int add(String str) throws NegativesNotAllowedException {
         int sum = 0;
 
-        if(!str.isEmpty()) {
-            String delimitersRegEx = DEFAULT_DELIMITERS;
-
-            if(str.startsWith("\\")) {
-                String[] newStr = str.split(NEW_LINE, 2);
-                delimitersRegEx = newStr[0].substring(1);
-                str = newStr[1];
-            }
-
-            sum = makeAddition(str.split(delimitersRegEx));
-        }
+        if(!str.isEmpty())
+            sum = makeAddition(getNumbers(str));
 
         return sum;
+    }
+
+    private String[] getNumbers(String str) {
+        if(str.startsWith("\\"))
+            return getNumbersWithNewDelimiter(str);
+
+        return str.split(DEFAULT_DELIMITERS);
+    }
+
+    private String[] getNumbersWithNewDelimiter(String str) {
+        String[] newStr = str.split(NEW_LINE, 2);
+        return newStr[1].split(newStr[0].substring(1));
     }
 
     private int makeAddition(final String[] numbers) throws NegativesNotAllowedException {
@@ -35,7 +37,7 @@ public class StringCalculator {
         for (String number : numbers) {
             int num = Integer.parseInt(number.trim());
             if (num < 0) negatives.add(num);
-            else result += num;
+            result += num;
         }
 
         if (!negatives.isEmpty())
